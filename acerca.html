@@ -1,0 +1,424 @@
+<html lang="es"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acerca - KOF Wing EX</title>
+<link rel="icon" type="image/png" href="kofwing_200-9.png">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&amp;family=Noto+Sans:wght@300;400;500&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0e;
+    --bg2: #111118;
+    --border: rgba(255,255,255,0.06);
+    --border2: rgba(255,255,255,0.12);
+    --accent: #a855f7;
+    --accent2: #38bdf8;
+    --gold: #fbbf24;
+    --green: #34d399;
+    --text: #ece8f5;
+    --muted: #7b77a0;
+    --faint: #2e2c40;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 200;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    background: transparent;
+    backdrop-filter: none;
+    border-bottom: none;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #ffffff;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .nav-logo img { height: 28px; }
+  .nav-logo span { color: #a855f7; }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: #ffffff; }
+  .nav-links a.active { color: #a855f7; }
+
+  /* HERO — pantalla completa */
+  .hero {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .hero-img {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+  .hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+  }
+  .hero-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(10,10,14,0.1) 0%, rgba(10,10,14,0.5) 60%, var(--bg) 100%);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding-bottom: 3rem;
+  }
+  .hero-eyebrow {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  .hero-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(52px, 9vw, 88px);
+    font-weight: 700;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: #ffffff;
+    line-height: 1;
+    text-shadow: 0 0 40px rgba(168,85,247,0.4);
+  }
+
+  /* CONTENT */
+  .content {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 4rem 2rem 6rem;
+  }
+
+  /* SECTION BLOCK */
+  .block {
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .block:last-child { border-bottom: none; }
+
+  .block-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  .block-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+  .block-text {
+    font-size: 15px;
+    color: #b8b4d0;
+    line-height: 1.8;
+  }
+  .block-text strong { color: var(--text); font-weight: 500; }
+  .block-text a {
+    color: var(--accent2);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(56,189,248,0.3);
+    transition: border-color 0.2s;
+  }
+  .block-text a:hover { border-color: var(--accent2); }
+
+  /* CARDS ROW */
+  .cards-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    margin-top: 1.5rem;
+  }
+  .info-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.1rem 1.25rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .info-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+  .info-card-icon { font-size: 22px; margin-bottom: 0.5rem; }
+  .info-card-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .info-card-text { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  /* NOTICE BOX */
+  .notice {
+    background: rgba(251,191,36,0.05);
+    border: 1px solid rgba(251,191,36,0.18);
+    border-radius: 10px;
+    padding: 1.1rem 1.4rem;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-top: 1.5rem;
+  }
+  .notice-icon { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+  .notice-text { font-size: 14px; color: #e8d49a; line-height: 1.7; }
+
+  /* DISCORD CARD */
+  .discord-card {
+    background: linear-gradient(135deg, rgba(88,101,242,0.12), rgba(168,85,247,0.08));
+    border: 1px solid rgba(88,101,242,0.25);
+    border-radius: 14px;
+    padding: 1.5rem 1.75rem;
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .discord-icon { font-size: 36px; flex-shrink: 0; }
+  .discord-info { flex: 1; min-width: 200px; }
+  .discord-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .discord-text { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .discord-badge {
+    display: inline-block;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: rgba(168,85,247,0.12);
+    color: var(--accent);
+    border: 1px solid rgba(168,85,247,0.25);
+    margin-top: 0.75rem;
+  }
+
+  /* CONTACT */
+  .contact-box {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .contact-box span { font-size: 22px; }
+  .contact-text { font-size: 14px; color: var(--muted); }
+  .contact-text a { color: var(--accent2); text-decoration: none; }
+  .contact-text a:hover { text-decoration: underline; }
+
+  /* TAG */
+  .tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    font-family: 'Rajdhani', sans-serif;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    background: rgba(168,85,247,0.12);
+    color: var(--accent);
+    border: 1px solid rgba(168,85,247,0.25);
+    margin-right: 6px;
+    margin-bottom: 4px;
+  }
+  .tag-blue {
+    background: rgba(56,189,248,0.1);
+    color: var(--accent2);
+    border-color: rgba(56,189,248,0.25);
+  }
+  .tag-gold {
+    background: rgba(251,191,36,0.1);
+    color: var(--gold);
+    border-color: rgba(251,196,36,0.25);
+  }
+
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .hero { height: 100vh; }
+    .content { padding: 2.5rem 1rem 4rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="kofwing_200-9.png" alt="logo">
+    <span>KOF WING EX</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Página principal</a></li>
+    <li><a href="roster.html">Roster</a></li>
+    <li><a href="controles.html">Controles</a></li>
+    <li><a href="guia.html">Guía</a></li>
+    <li><a href="tierlist.html">Tier List</a></li>
+    <li><a href="acerca.html" class="active">Acerca</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-img">
+    <video class="hero-video" autoplay="" muted="" loop="" playsinline="">
+      <source src="fondo.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">KOF Wing EX · Fan Site</div>
+    <div class="hero-title">ACERCA</div>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <div class="block">
+    <div class="block-label">01 · El juego</div>
+    <div class="block-title">¿Qué es KOF Wing EX?</div>
+    <div class="block-text">
+      KOF Wing EX es un juego de lucha independiente creado por el desarrollador chino <strong>Wing</strong>, inspirado en la saga The King of Fighters. El juego cuenta con un extenso roster de personajes, un sistema de combate profundo y mecánicas únicas como el <strong>sistema de energía con tres tipos de burst</strong>, el modificador de combo y el Drive Cancel.
+    </div>
+    <div class="cards-row">
+      <div class="info-card">
+        <div class="info-card-icon">⚔️</div>
+        <div class="info-card-title">Combate profundo</div>
+        <div class="info-card-text">Sistema de burst con tres variantes, modificador de combo y Drive Cancel para combos avanzados.</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">🎮</div>
+        <div class="info-card-title">Roster extenso</div>
+        <div class="info-card-text">Personajes de la saga KOF y más, cada uno con sus propias habilidades, kills y súper kills.</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">🇨🇳</div>
+        <div class="info-card-title">Indie chino</div>
+        <div class="info-card-text">Desarrollado de forma independiente por Wing, con una comunidad activa en Bilibili.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">02 · El sitio</div>
+    <div class="block-title">Sobre este sitio</div>
+    <div class="block-text">
+      Este sitio es una <strong>guía no oficial creada por fans</strong> para la comunidad hispanohablante. Nuestro objetivo es hacer accesible toda la información del juego a jugadores que no dominan el chino, desde los controles básicos hasta las mecánicas más avanzadas.
+    </div>
+    <div class="notice">
+      <div class="notice-icon">⚠️</div>
+      <div class="notice-text">Este es un sitio de fans <strong>sin ninguna afiliación oficial</strong> con el desarrollador. No tiene fines comerciales y su único propósito es apoyar a la comunidad de jugadores.</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">03 · Créditos</div>
+    <div class="block-title">Fuentes y créditos</div>
+    <div class="block-text">
+      <p style="margin-bottom:1rem;">La información de mecánicas y sistemas de juego está basada en el <strong>FAQ oficial elaborado por flashwing</strong> y el equipo de <strong>淡泊wing组</strong>, disponible en Bilibili. Los créditos completos por la documentación original son para ellos.</p>
+      <p style="margin-bottom:1rem;">Las imágenes del roster utilizadas en este sitio pertenecen al proyecto <strong>MUGENGERS 4 Orochi's Origin Strong FS</strong>. Todos los créditos visuales son para sus respectivos creadores.</p>
+      <p style="margin-bottom:1rem;">La información de habilidades fue obtenida de la <strong>Skill List incluida dentro del propio juego</strong> y del archivo <code style="background:rgba(255,255,255,0.07);padding:1px 6px;border-radius:4px;font-size:13px;">skill list.swf</code> del juego original.</p>
+      <p>Si quieres consultar el FAQ original puedes visitar: <a href="https://space.bilibili.com/26992419" target="_blank">space.bilibili.com/26992419</a></p>
+    </div>
+    <div style="margin-top:1.25rem;">
+      <span class="tag">flashwing</span>
+      <span class="tag">淡泊wing组</span>
+      <span class="tag tag-blue">MUGENGERS 4</span>
+      <span class="tag tag-gold">Bilibili</span>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">04 · Comunidad</div>
+    <div class="block-title">Proyectos y próximas actualizaciones</div>
+    <div class="block-text">Este sitio está en constante crecimiento. Actualmente se está trabajando en los siguientes proyectos para la comunidad:</div>
+    <div class="discord-card">
+      <div class="discord-icon">🎮</div>
+      <div class="discord-info">
+        <div class="discord-title">Servidor de Discord</div>
+        <div class="discord-text">
+          Próximamente se lanzará un servidor oficial para la comunidad hispanohablante de KOF Wing EX. El objetivo es reunir jugadores de todos los niveles para conectarse, compartir conocimiento y retarse en partidas en línea mediante <strong style="color:var(--text)">Parsec</strong> — una herramienta gratuita que permite jugar de forma remota como si estuvieras en la misma computadora que tu rival, haciendo posible jugar KOF Wing EX en línea con cualquier persona del mundo.
+        </div>
+        <div class="discord-badge">⏳ Próximamente</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">05 · Contacto</div>
+    <div class="block-title">¿Encontraste un error?</div>
+    <div class="block-text">Si encontraste un error, quieres aportar información o simplemente quieres contactarnos, escríbenos.</div>
+    <div class="contact-box">
+      <span>✉️</span>
+      <div class="contact-text">
+        <strong style="color:var(--text)">BFMV | Jordy</strong><br>
+        <a href="mailto:endroad848@gmail.com">endroad848@gmail.com</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+</body></html>
